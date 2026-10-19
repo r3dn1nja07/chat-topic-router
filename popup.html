@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chat Topic Router</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="eyebrow">LOCAL PROJECT INBOX</div>
+    <h1>Chat Topic Router</h1>
+    <p>Keep the useful question. Continue it in the right project.</p>
+  </header>
+  <section class="toolbar">
+    <label class="sr-only" for="filter">Filter by project</label>
+    <select id="filter"><option value="">All projects</option></select>
+    <label class="sr-only" for="status-filter">Filter by status</label>
+    <select id="status-filter"><option value="open">Open</option><option value="all">All</option><option value="done">Done</option></select>
+  </section>
+  <section class="search-row">
+    <label class="sr-only" for="search">Search saved passages</label>
+    <input id="search" type="search" placeholder="Search passages and project context">
+  </section>
+  <section class="project-tools">
+    <button id="manage" type="button">Projects</button>
+    <button id="backup" type="button" title="Save a complete JSON backup">Backup</button>
+    <button id="restore" type="button" title="Restore a JSON backup">Restore</button>
+    <button id="export" type="button" title="Export visible handoffs as Markdown">Export view</button>
+    <input id="restore-file" type="file" accept="application/json,.json" hidden>
+  </section>
+  <section id="project-panel" class="project-panel" hidden aria-label="Manage projects">
+    <form id="project-form">
+      <strong id="project-form-title">New project</strong>
+      <input id="project-name" maxlength="60" placeholder="Project name" required>
+      <textarea id="project-context" maxlength="1500" placeholder="Reusable project context for handoffs (optional)"></textarea>
+      <div class="panel-actions"><button id="cancel-edit" type="button" hidden>Cancel</button><button type="submit">Save project</button></div>
+    </form>
+    <div id="project-list"></div>
+  </section>
+  <section id="bulk-bar" class="bulk-bar" hidden>
+    <span id="selected-count">0 selected</span>
+    <button id="copy-selected" type="button">Copy selected</button>
+    <button id="mark-selected" type="button">Mark done</button>
+    <button id="delete-selected" type="button" class="quiet-danger">Delete</button>
+  </section>
+  <main id="list" aria-live="polite"></main>
+  <footer><span id="count">0 open</span> � Made by Keiah. Data stays in this browser; route selected text on ChatGPT, Claude, or Gemini.</footer>
+  <script src="core.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
+
