@@ -1,0 +1,40 @@
+name: Bug report
+description: Report a problem with capture, project inboxes, or handoffs.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include private chat text, credentials, or personal data in an issue.
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 130 / Edge 130
+    validations:
+      required: true
+  - type: dropdown
+    id: provider
+    attributes:
+      label: AI chat provider
+      options:
+        - ChatGPT
+        - Claude
+        - Gemini
+        - Extension popup / not provider-specific
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Use placeholder text instead of real conversation content.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+
