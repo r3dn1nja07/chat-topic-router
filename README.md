@@ -43,10 +43,6 @@ The automated tests cover provider URL validation, selected-text limits, project
 - Backups can contain private conversation text. Store exported files with the same care as your chats.
 - Browser vendor UI and permissions can change. Support is experimental until manually tested on each provider and browser.
 
-## Project notes
-
-The [`projects/Chat Topic Router.md`](projects/Chat%20Topic%20Router.md) note is formatted for the Obsidian project vault.
-
 ## Author and license
 
 Made by **Keiah**. Released under the MIT License; see [LICENSE](LICENSE).
