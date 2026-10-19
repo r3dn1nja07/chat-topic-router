@@ -15,7 +15,7 @@
 
 ## Install for testing
 
-1. Download or clone this repository.
+1. Download the `chat-topic-router-v0.3.0.zip` package from the [latest GitHub release](https://github.com/r3dn1nja07/chat-topic-router/releases/latest) and extract it, or clone this repository.
 2. Open `chrome://extensions` in Chrome or `edge://extensions` in Edge.
 3. Turn on **Developer mode**.
 4. Choose **Load unpacked** and select the folder containing `manifest.json`.
