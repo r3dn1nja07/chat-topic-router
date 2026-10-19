@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Chat Topic Router",
+  "version": "0.3.0",
+  "description": "Route selected passages from ChatGPT, Claude, and Gemini into local project inboxes.",
+  "permissions": ["storage", "contextMenus"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Chat Topic Router",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
+
