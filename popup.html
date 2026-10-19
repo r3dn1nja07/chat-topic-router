@@ -24,16 +24,30 @@
   </section>
   <section class="project-tools">
     <button id="manage" type="button">Projects</button>
+    <button id="obsidian-toggle" type="button" title="Set up an optional Obsidian vault">Obsidian</button>
     <button id="backup" type="button" title="Save a complete JSON backup">Backup</button>
     <button id="restore" type="button" title="Restore a JSON backup">Restore</button>
     <button id="export" type="button" title="Export visible handoffs as Markdown">Export view</button>
     <input id="restore-file" type="file" accept="application/json,.json" hidden>
+  </section>
+  <section id="obsidian-panel" class="project-panel" hidden aria-label="Obsidian setup">
+    <form id="obsidian-form">
+      <strong>Optional Obsidian destination</strong>
+      <p class="help-text">Router keeps working on its own. Add a vault to append each passage to a note named for its project.</p>
+      <input id="obsidian-vault" maxlength="120" placeholder="Obsidian vault name" required>
+      <input id="obsidian-folder" maxlength="240" placeholder="Folder in vault (optional)">
+      <div class="panel-actions"><button type="submit">Save Obsidian setup</button></div>
+    </form>
+    <div id="obsidian-status" class="help-text" aria-live="polite"></div>
   </section>
   <section id="project-panel" class="project-panel" hidden aria-label="Manage projects">
     <form id="project-form">
       <strong id="project-form-title">New project</strong>
       <input id="project-name" maxlength="60" placeholder="Project name" required>
       <textarea id="project-context" maxlength="1500" placeholder="Reusable project context for handoffs (optional)"></textarea>
+      <label for="project-obsidian-note">Main Obsidian project note (optional)</label>
+      <input id="project-obsidian-note" maxlength="240" placeholder="projects/Project A">
+      <p class="help-text">Enter the existing note's path from the vault root. Captures go to a separate “Project A Captures” note and link back here. Leave blank to keep saving into the project-named note.</p>
       <div class="panel-actions"><button id="cancel-edit" type="button" hidden>Cancel</button><button type="submit">Save project</button></div>
     </form>
     <div id="project-list"></div>
@@ -45,9 +59,8 @@
     <button id="delete-selected" type="button" class="quiet-danger">Delete</button>
   </section>
   <main id="list" aria-live="polite"></main>
-  <footer><span id="count">0 open</span> � Made by Keiah. Data stays in this browser; route selected text on ChatGPT, Claude, or Gemini.</footer>
+  <footer><span id="count">0 open</span> · Made by Keiah. Data stays in this browser; route selected text on ChatGPT, Claude, or Gemini.</footer>
   <script src="core.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
-

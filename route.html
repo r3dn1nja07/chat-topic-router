@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Route passage · Chat Topic Router</title>
+  <link rel="stylesheet" href="route.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">LOCAL PROJECT INBOX</div>
+      <h1>Route this passage</h1>
+      <p>This form opens in its own tab so typing stays here, not in your AI chat.</p>
+    </header>
+    <form id="route-form">
+      <label for="project">Project</label>
+      <input id="project" maxlength="60" value="Unsorted" placeholder="Project name" required>
+
+      <label for="title">Short title</label>
+      <input id="title" maxlength="120" placeholder="What is this about?">
+
+      <label for="selected-text">Selected passage</label>
+      <textarea id="selected-text" readonly rows="5"></textarea>
+
+      <label for="note">Relevant context to carry over (optional)</label>
+      <textarea id="note" maxlength="2000" rows="3" placeholder="Add only context needed in the destination chat."></textarea>
+
+      <p class="privacy">Saved only in this browser. The original chat stays unchanged.</p>
+      <div id="status" role="status" aria-live="polite"></div>
+      <button id="save" type="submit">Save to project</button>
+    </form>
+  </main>
+  <script src="route.js"></script>
+</body>
+</html>

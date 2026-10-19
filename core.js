@@ -18,6 +18,7 @@
       id: cleanText(project?.id, 80) || makeId(),
       name: cleanText(project?.name, 60),
       context: cleanText(project?.context, 1500),
+      obsidianNote: normalizeNotePath(project?.obsidianNote),
       createdAt: cleanText(project?.createdAt, 40) || new Date().toISOString()
     };
   }
@@ -79,8 +80,53 @@
     return lines.join("\n");
   }
 
-  const api = { MAX_ITEMS, MAX_TEXT, MAX_PROJECTS, STORAGE_KEY, PROJECTS_KEY, cleanText, makeId, normalizeData, normalizeProject, buildHandoff };
+  function buildObsidianUri(item, project, settings) {
+    const vault = cleanText(settings?.vault, 120);
+    if (!vault || !item?.selectedText) return "";
+    const folder = cleanText(settings?.folder, 240).replace(/\\/g, "/").split("/")
+      .map((part) => safePathSegment(part)).filter(Boolean).join("/");
+    const projectName = safePathSegment(project?.name || item.project || "Unsorted") || "Unsorted";
+    const projectNote = normalizeNotePath(project?.obsidianNote);
+    // Keep captures separate from the linked main note to create real backlinks.
+    let notePath = [folder, `${projectName}${projectNote ? " Captures" : ""}.md`].filter(Boolean).join("/");
+    if (projectNote && notePath.slice(0, -3).toLocaleLowerCase() === projectNote.toLocaleLowerCase()) {
+      notePath = [folder, `${projectName} Router Captures.md`].filter(Boolean).join("/");
+    }
+    const quote = cleanText(item.selectedText, MAX_TEXT).split("\n").map((line) => `> ${line}`).join("\n");
+    const parts = [
+      `## ${(cleanText(item.title, 120) || "Routed passage").replace(/[\r\n]+/g, " ")}`,
+      `**Captured:** ${cleanText(item.savedAt, 40) || new Date().toISOString()} - ${cleanText(item.source, 40) || "AI chat"}`,
+      "",
+      quote
+    ];
+    if (projectNote) parts.splice(2, 0, `**Project:** [[${projectNote}]]`);
+    if (item.note) parts.push("", `**Carry-over context:** ${cleanText(item.note, 2000)}`);
+    parts.push("", "---", "");
+    const params = new URLSearchParams({
+      vault,
+      file: notePath,
+      content: parts.join("\n"),
+      append: "true"
+    });
+    // Obsidian URI values use percent-encoded spaces, not form-style pluses.
+    const query = params.toString().replace(/\+/g, "%20");
+    if (query.length > 7000) return "";
+    return `obsidian://new?${query}`;
+  }
+
+  function safePathSegment(value) {
+    return cleanText(value, 100).replace(/[<>:"/\\|?*]/g, "-").replace(/^\.+|\.+$/g, "").trim();
+  }
+
+  function normalizeNotePath(value) {
+    const path = cleanText(value, 240).replace(/\\/g, "/").replace(/\.md$/i, "");
+    if (!path || /[\[\]|#^\r\n]/.test(path)) return "";
+    const segments = path.split("/");
+    if (segments.some(part => !part.trim() || part === "." || part === ".." || /[<>:"?*]/.test(part))) return "";
+    return path;
+  }
+
+  const api = { MAX_ITEMS, MAX_TEXT, MAX_PROJECTS, STORAGE_KEY, PROJECTS_KEY, cleanText, makeId, normalizeData, normalizeProject, buildHandoff, buildObsidianUri };
   root.RouterCore = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(globalThis);
-

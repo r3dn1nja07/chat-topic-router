@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Chat Topic Router",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Route selected passages from ChatGPT, Claude, and Gemini into local project inboxes.",
   "permissions": ["storage", "contextMenus"],
   "host_permissions": [
@@ -28,4 +28,3 @@
     }
   ]
 }
-

@@ -1,0 +1,21 @@
+:root { color-scheme: light; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #1a2923; background: #f1f6f2; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 28px 16px; }
+main { width: min(620px, 100%); margin: 0 auto; overflow: hidden; border: 1px solid #dce6df; border-radius: 16px; background: #fff; box-shadow: 0 12px 40px #17211e12; }
+header { padding: 22px 24px 18px; color: white; background: #176b57; }
+.eyebrow { font-size: 10px; font-weight: 750; letter-spacing: .13em; opacity: .8; }
+h1 { margin: 6px 0 5px; font-size: 22px; }
+header p { margin: 0; font-size: 13px; opacity: .92; }
+form { display: grid; gap: 8px; padding: 22px 24px 24px; }
+label { margin-top: 6px; font-size: 12px; font-weight: 750; }
+input, textarea { width: 100%; border: 1px solid #cbd7d1; border-radius: 8px; padding: 10px 11px; color: #17211e; background: white; font: inherit; font-size: 14px; }
+input:focus, textarea:focus { outline: 3px solid #176b5733; border-color: #176b57; }
+textarea { resize: vertical; line-height: 1.45; }
+#selected-text { color: #394a42; background: #f3f7f4; }
+.privacy { margin: 5px 0 0; color: #63736a; font-size: 12px; }
+#status { min-height: 20px; color: #8a3f36; font-size: 13px; }
+#status.success { color: #176b57; }
+button { justify-self: end; border: 0; border-radius: 8px; padding: 10px 16px; color: white; background: #176b57; font: inherit; font-size: 13px; font-weight: 750; cursor: pointer; }
+button:hover { background: #105340; }
+button:disabled { cursor: default; opacity: .7; }
+@media (max-width: 480px) { body { padding: 12px 8px; } header { padding: 18px; } form { padding: 18px; } }
