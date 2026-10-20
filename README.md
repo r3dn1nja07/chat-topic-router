@@ -1,6 +1,6 @@
 # Chat Topic Router
 
-The v0.4.0 package adds a cross-client Agent Skill kit alongside the existing v0.3.1 browser extension. Use either independently. See [kit/INSTALL.md](kit/INSTALL.md) for manual setup and [release notes](RELEASE-NOTES-v0.4.0.md) for the changes.
+v0.5.0 adds optional local central brain search and capture alongside the cross-client skill kit. See [bridge setup](bridge/README.md), [skill setup](kit/INSTALL.md), and [release notes](RELEASE-NOTES-v0.5.0.md).
 
 **Made by Keiah.** A local-first browser extension for pulling one useful question out of a mixed AI chat and putting it in the right project inbox.
 
@@ -56,7 +56,7 @@ The automated tests cover provider URL validation, selected-text limits, project
 
 - The extension stores selected text, project notes, and source labels in `chrome.storage.local` on this browser profile.
 - Source conversation URLs are stored locally but omitted from copied handoffs and Markdown exports by default.
-- No network request, model API, account, or server is used by the extension itself.
+- The optional central brain connection calls only the authenticated bridge at `127.0.0.1:4828`. Core routing works without it; no cloud API is used.
 - It does not read full conversation histories or physically move or remove messages in ChatGPT, Claude, or Gemini. It keeps a local copy and prepares a handoff for a separate chat.
 - Backups can contain private conversation text. Store exported files with the same care as your chats.
 - Browser vendor UI and permissions can change. Support is experimental until manually tested on each provider and browser.

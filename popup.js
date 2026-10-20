@@ -104,7 +104,8 @@ function buildCard(item) {
   move.value = item.projectId;
   move.addEventListener("change", () => { if (move.value) { const destination = projects.find((project) => project.id === move.value); updateItem(item.id, { projectId: destination.id, project: destination.name }); } });
   const remove = button("Delete", () => deleteItems([item.id]));
-  actions.append(copy, toObsidian, toggle, move, remove);
+  const toBrain = button("Save to central brain", () => saveToBrain(item, toBrain));
+  actions.append(copy, toObsidian, toBrain, toggle, move, remove);
   card.append(head, meta, title, excerpt);
   if (item.note) {
     const note = document.createElement("div");

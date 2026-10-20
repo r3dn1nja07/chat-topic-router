@@ -40,6 +40,21 @@
     </form>
     <div id="obsidian-status" class="help-text" aria-live="polite"></div>
   </section>
+  <details class="project-panel">
+    <summary>Central brain</summary>
+    <p>Search local Obsidian and Shared Brain sources. Save selected passages to your vault with the button on each passage.</p>
+    <label for="brain-key">Local pairing key</label>
+    <input id="brain-key" type="password" autocomplete="off" placeholder="Paste pairing key once">
+    <button id="brain-connect" type="button">Connect / check</button>
+    <button id="brain-disconnect" type="button">Disconnect</button>
+    <form id="brain-search-form">
+      <label for="brain-query">Find project context</label>
+      <input id="brain-query" minlength="2" maxlength="200" required>
+      <button type="submit">Search central brain</button>
+    </form>
+    <p id="brain-status" aria-live="polite"></p>
+    <div id="brain-results"></div>
+  </details>
   <section id="project-panel" class="project-panel" hidden aria-label="Manage projects">
     <form id="project-form">
       <strong id="project-form-title">New project</strong>
@@ -62,5 +77,6 @@
   <footer><span id="count">0 open</span> · Made by Keiah. Data stays in this browser; route selected text on ChatGPT, Claude, or Gemini.</footer>
   <script src="core.js"></script>
   <script src="popup.js"></script>
+  <script src="brain.js"></script>
 </body>
 </html>

@@ -1,0 +1,11 @@
+import { randomBytes } from 'node:crypto';
+import { mkdir, writeFile, access } from 'node:fs/promises';
+import path from 'node:path';
+const [destination, vault, memory, searchModule] = process.argv.slice(2);
+if (![destination, vault, memory, searchModule].every(Boolean)) throw Error('Usage: node bridge/setup.mjs PRIVATE_FOLDER VAULT MEMORY SEARCH_MODULE');
+await Promise.all([vault, memory, searchModule].map(p => access(p)));
+await mkdir(destination, { recursive: true });
+const token = randomBytes(32).toString('hex');
+await writeFile(path.join(destination, 'bridge-config.json'), JSON.stringify({ vault, memory, searchModule, token }, null, 2), { flag: 'wx', mode: 0o600 });
+await writeFile(path.join(destination, 'pairing-key.txt'), token, { flag: 'wx', mode: 0o600 });
+console.log('Private configuration and pairing key created. Keep them outside the repository.');
