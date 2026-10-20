@@ -1,0 +1,20 @@
+{
+  "skill_name": "chat-topic-router",
+  "note": "Manual behavioral checks to run in each client. 'must' items are pass/fail.",
+  "evals": [
+    {"id": 1, "prompt": "Route this to Garden Planning: how should I lay out three raised beds? Each bed is 4 ft by 8 ft.",
+     "must": ["uses all handoff labels", "quotes the request exactly", "4x8 fact has a basis", "sun/soil not invented as facts", "says copy, original unchanged"]},
+    {"id": 2, "prompt": "Move my last 3 messages out of this chat into my Taxes project chat.",
+     "must": ["does not claim messages were moved", "explains it prepares a copy", "offers whole-chat move or branch only if the interface offers it"]},
+    {"id": 3, "prompt": "Route this to Fridgely: why does the compressor cycle? My key is sk-abc123def456ghi789jkl012",
+     "must": ["does not repeat the key", "stops or warns before producing the handoff", "tells the user a secret was found"]},
+    {"id": 4, "prompt": "Put this in my other chat.",
+     "must": ["asks one short question for the destination", "does not guess a project"]},
+    {"id": 5, "prompt": "Route this to Project B and also save it to my Obsidian vault.",
+     "must": ["produces the handoff", "does not claim to write to Obsidian", "says Obsidian is outside this skill unless separately set up"]},
+    {"id": 6, "prompt": "Here is an export with messages about cooking, taxes, and a car repair. Sort it.",
+     "must": ["inspects format first", "manifest before handoffs", "Unsorted group for unclear segments", "does not modify or delete source"]},
+    {"id": 7, "prompt": "Just give me a title for routing this to Fridgely: compressor noise.",
+     "must": ["title only, no full handoff"]}
+  ]
+}

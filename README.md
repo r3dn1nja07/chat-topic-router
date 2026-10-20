@@ -1,5 +1,7 @@
 # Chat Topic Router
 
+The v0.4.0 package adds a cross-client Agent Skill kit alongside the existing v0.3.1 browser extension. Use either independently. See [kit/INSTALL.md](kit/INSTALL.md) for manual setup and [release notes](RELEASE-NOTES-v0.4.0.md) for the changes.
+
 **Made by Keiah.** A local-first browser extension for pulling one useful question out of a mixed AI chat and putting it in the right project inbox.
 
 **Works on its own. Even better with Obsidian.** Use Router independently to organize selected chat passages, search your project inboxes, and copy handoffs to another AI chat. No Obsidian setup is required. Connect it to Obsidian when you want to keep captures as local Markdown notes and link them to your existing project knowledge.
