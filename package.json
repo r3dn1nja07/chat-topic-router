@@ -1,10 +1,10 @@
 {
   "name": "chat-topic-router",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "description": "Local-first project inbox for selected AI chat passages",
   "scripts": {
-    "test": "node tests/background.test.cjs && node tests/route.test.cjs && node tests/content.test.cjs && node --test bridge/server.test.mjs"
+    "test": "node tests/background.test.cjs && node tests/route.test.cjs && node tests/content.test.cjs && node --test tests/brain.test.cjs bridge/server.test.mjs"
   },
   "engines": {
     "node": ">=18"

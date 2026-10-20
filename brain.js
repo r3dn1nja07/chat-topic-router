@@ -37,8 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const citation = document.createElement('strong'); citation.textContent = `${result.source}:${result.line}`;
         const text = document.createElement('p'); text.textContent = result.excerpt;
         const copy = button('Copy cited context', async () => {
-          await navigator.clipboard.writeText(`${result.excerpt}\n(source: ${result.source}:${result.line})`);
-          flash(copy, 'Copied');
+          try {
+            await navigator.clipboard.writeText(`${result.excerpt}\n(source: ${result.source}:${result.line})`);
+            flash(copy, 'Copied');
+          } catch {
+            status.textContent = 'Copy blocked by the browser. You can select the text and source citation, then copy them manually.';
+            flash(copy, 'Copy blocked');
+          }
         });
         item.append(citation, text, copy); resultBox.append(item);
       }
